@@ -1,8 +1,7 @@
 // 1.
-let animal:string[];
-animal = ['panda','cat','wombat','frog','hamster'];
-let human : {name : string, age : number, height: number, married : boolean}
-human = {name : 'mkm', age : 25, height: 180.5, married : false}
+let animal:string[] = ['panda','cat','wombat','frog','hamster'];
+let human:{name : string, age : number, height: number, married : boolean}
+= {name : 'mkm', age : 25, height: 180.5, married : false};
 
 // 2.
 let zoo : {
@@ -15,8 +14,7 @@ let zoo : {
         age : number,
         height : number
     }
-}
-zoo = {
+} = {
     animals : ['panda','cat','wombat','frog','hamster'],
     total   : 120,
     isClosed : false,
@@ -29,17 +27,17 @@ zoo = {
 };
 
 // 3.
-const reponse : [number , string] = [200 , "response success"];
-//const reponse : [number , string] = [404, "Page not found"];
-//const reponse : [number , string] = [500, "server error"];
+const reponse : readonly[number , string] = [200 , "response success"];
+//const reponse : readonly[number , string] = [404, "Page not found"];
+//const reponse : readonly[number , string] = [500, "server error"];
 
 // 4.
-/*
-let array:(string|number|boolean|undefined|object)[]
+
+let array:(string|number|boolean|undefined|{name:string})[]
 array = [12345, 'mkm', true, undefined]; // ok
 array = ['mkm' , 12345, true]; // ok
 array.push({name : 'mkm'}); // ok
-*/
+
 // 5.
 //Q1. test1이라는 변수에는 undefined를 넣을 수 있습니다.
 //    '1234'라는 값도 넣을수 있죠. 
@@ -73,11 +71,15 @@ const apply:(a:number,b:number)=>number = (a,b) => a+b;
 let data:string;
 
 function racoonInfo (name:string,weight:number,gender:string,neutering?:boolean):string {
+    /*
     let answer = "이름 : " + name + " , 무게 : " + weight + " , 성별 : " + gender;
     if(neutering != null){
         answer += " , 중성화 : " + neutering;
     }
     return answer;
+    */
+   return `이름 : ${name} , 무게 : ${weight} , 성별 : ${gender}` + 
+   (neutering != undefined ? `, 중성화 ${neutering}` : '');
 }
  
 data = racoonInfo('podong' , 10, 'male', true );
@@ -87,19 +89,32 @@ console.log(data);//이름 : coco , 무게 : 4 , 성별 : female
 
 // 8.
 
-const array:(string|number)[] = ['1',2,3,4,'5'];
-function sum(array: (string|number)[]) : number{
+const array2:(string|number)[] = ['1',2,3,4,'5'];
+function sum(array2: (string|number)[]) : number{
     // 매개변수로 들어온 배열을 반복문을 통해 모두 더한 후 더한 값을 반환
-    var sum = 0;
-    for(var temp of array){
+    /*
+    let sum = 0;
+    for(var temp of array2){
         sum += Number(temp);
     }
     return sum;
+    */
+   let sum = 0;
+   array2.forEach((value) => {
+
+        if(typeof value == 'string'){
+            sum += Number(value);
+        } else {
+            sum += value;
+        }
+   })
+   return sum;
 }
-const total = sum(array);
+const total = sum(array2);
 console.log(total); // 15
 
 // 9.
+/*
 function abc(value:(string|string[])):(number|number[]){
     if(typeof(value) == "object"){
         let result:number[] = [];
@@ -110,6 +125,23 @@ function abc(value:(string|string[])):(number|number[]){
     } else {
         return Number(value);
     }
+    
+}
+*/
+
+function abc(param:string|string[]):number|number[]{
+    if(typeof param == 'string'){
+        return Number(param);
+    } else if(typeof param == "object"){
+        let numberArr:number[] = [];
+        
+        for(let i = 0; i <param.length; i++){
+            numberArr[i] = Number(param[i]);
+        }
+        return numberArr;
+    } else {
+        throw new Error();
+    }   
 }
 
 let test = ["123","12345"];
