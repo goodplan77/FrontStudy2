@@ -110,10 +110,17 @@ const obj:Obj = {
 obj.call(); // mkm
 
 // 8.
-type Fn8 = ([first,...rest]:[number,...number[]]) => number[]
-const fn:Fn8 = ([first,...rest]) => {
-   return rest.map(value => value + first);
+// type Fn8 = ([first,...rest]:[number,...number[]]) => number[]
+// const fn:Fn8 = ([first,...rest]) => {
+//    return rest.map(value => value + first);
+// }
+const fn = ([first,...rest] : [number,...number[]]) : number[] => {
+   for(let i = 0 ; i <rest.length ; i++){
+        rest[i] += first;
+   }
+   return rest;
 }
+
 // fn([]) // error
 fn([1]); // []
 fn([1,2]); // [3]

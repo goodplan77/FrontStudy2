@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+       function addElement(){
+            const root = document.querySelector("#root");
+
+            const h1 = document.createElement("h1");
+            const text = document.createTextNode('hello world');
+            h1.appendChild(text);
+            root.appendChild(h1);
+       }
+
+       function replaceElement(){
+            const replaceElement = document.querySelector("#dom");
+
+            const div = document.createElement('div');
+            div.setAttribute('id','dom');
+
+            const h2 = document.createElement('h2');
+            const textNode = document.createTextNode('교체!');
+            h2.appendChild(textNode);
+            div.appendChild(h2);
+
+            replaceElement.replaceWith(div);
+       }
+    </script>
+</head>
+<body>
+    <button onclick="addElement()">요소추가</button>
+    <button onclick="replaceElement()">요소수정</button>
+    <div id="root">
+        <h1>하이</h1>
+    </div>
+
+    <div id="dom">
+        <h2>2222</h2>
+    </div>
+</body>
+</html>
