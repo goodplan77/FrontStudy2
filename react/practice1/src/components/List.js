@@ -1,6 +1,8 @@
 import {Table,Button} from 'reactstrap';
+import { useNavigate } from 'react-router-dom';
 function List(props){
-
+    
+    const navi = useNavigate();
     let {list , setList} = props;
 
     function deleteMovie(bno){
@@ -25,6 +27,7 @@ function List(props){
 
     return <div id='movie-area'>
         <h1>KH1-Movies</h1>
+        <Button onClick = {() => {navi('/insert');}}>게시글 추가</Button>
         <Table>
             <thead>
                 <tr>
@@ -38,13 +41,18 @@ function List(props){
             <tbody>
                 {
                     list.map( (value , index) => (
-                        <tr key = {index}>
+                        <tr key = {index} onClick = {() =>{
+                            navi('/detail/' + value.bno);
+                        }}>
                             <td>{value.bno}</td>
                             <td>{value.title}</td>
                             <td>{value.genre}</td>
                             <td>{value.release_date}</td>
                             <td>
-                                <Button onClick = {() => {deleteMovie(value.bno)}}>Delete</Button>
+                                <Button onClick = {(e) => {
+                                    e.stopPropagation();
+                                    deleteMovie(value.bno);
+                                    }}>Delete</Button>
                             </td>
                         </tr>
                     ))

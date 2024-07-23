@@ -33,7 +33,10 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import List from './components/List';
 import Insert from './components/Insert';
+import Detail from './components/Detail';
+import Update from './components/Update';
 import { useState } from 'react';
+import { Route, Routes, Link} from 'react-router-dom';
 
 function App() {
 
@@ -54,10 +57,17 @@ function App() {
     release_date: '2022-03-1'
   }]);
 
+  let [movieDetail , setMovieDetail] = useState({});
+
     return (
       <div className="App">
-        <List list={list} setList={setList} ></List>
-        <Insert list={list} setList={setList}></Insert>
+        <Routes>
+          <Route path='/' element={<List list={list} setList={setList}/>}/>
+          <Route path='/list' element={<List list={list} setList={setList}/>}/>
+          <Route path='/insert' element={<Insert list={list} setList={setList}/>}/>
+          <Route path='/detail/:boardNo' element={<Detail list={list} setList={setList}/>}/>
+          <Route path='/update' element={<Update list={list} setList={setList} movieDetail = {movieDetail}/>}/>
+        </Routes>
       </div>
     );
   }
