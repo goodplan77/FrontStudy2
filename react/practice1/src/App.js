@@ -59,14 +59,21 @@ function App() {
 
   let [movieDetail , setMovieDetail] = useState({});
 
+  let props = {
+    list,
+    setList,
+    movieDetail,
+    setMovieDetail
+  }
+
     return (
       <div className="App">
         <Routes>
-          <Route path='/' element={<List list={list} setList={setList}/>}/>
-          <Route path='/list' element={<List list={list} setList={setList}/>}/>
-          <Route path='/insert' element={<Insert list={list} setList={setList}/>}/>
-          <Route path='/detail/:boardNo' element={<Detail list={list} setList={setList}/>}/>
-          <Route path='/update' element={<Update list={list} setList={setList} movieDetail = {movieDetail}/>}/>
+          <Route path='/' element={<List {...props}/>}/>
+          <Route path='/list' element={<List {...props}/>}/>
+          <Route path='/insert' element={<Insert {...props}/>}/>
+          <Route path='/detail/:boardNo' element={<Detail {...props}/>}/>
+          <Route path='/update' element={<Update {...props}/>}/>
         </Routes>
       </div>
     );

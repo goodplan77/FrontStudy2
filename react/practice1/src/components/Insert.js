@@ -77,12 +77,12 @@
 // export default Insert;
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
-function Insert({list , setList}){
+function Insert({list , setList , setMovieDetail}){
 
     let navi = useNavigate();
 
     let [movie , setMovie] = useState({
-        bno : 0,
+        bno : '',
         title : '',
         genre : '',
         release_date : ''
@@ -109,6 +109,7 @@ function Insert({list , setList}){
         }
 
         setList([...list , movie]);
+        setMovieDetail(movie);
         navi('/detail/' + movie.bno);
     }
 

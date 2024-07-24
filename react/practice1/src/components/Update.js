@@ -1,14 +1,12 @@
 import { useState } from "react";
-function Update({list , setList , movieDetail}){
+import { useNavigate } from 'react-router-dom';
+function Update({list , setList , movieDetail , setMovieDetail}){
+    
+    let navi = useNavigate();
 
-    let [movie , setMovie] = useState({
-        bno : movieDetail.bno,
-        title : movieDetail.title,
-        genre : movieDetail.genre,
-        release_date : movieDetail.release_date
-    })
+    let [movie , setMovie] = useState(movieDetail);
 
-    function updateChange(e){
+    let updateChange = (e) =>{
         let{name , value} = e.target;
         setMovie({
             ...movie,
@@ -17,7 +15,7 @@ function Update({list , setList , movieDetail}){
     }
 
     function updateMovie(){
-        if(!(movie.bno && movie.title && movie.genre && movie.release_date)){
+        if(!(movie.title && movie.genre && movie.release_date)){
             alert('모든 입력값은 필수입니다.');
             return;
         }
@@ -31,7 +29,7 @@ function Update({list , setList , movieDetail}){
         }
         
         setList([...list]);
-       
+        navi('/detail/' + movie.bno);
     }
 
     return (

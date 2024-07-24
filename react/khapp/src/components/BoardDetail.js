@@ -1,11 +1,31 @@
 import {Link, useParams} from 'react-router-dom';
+import {useState , useEffect , useContext} from 'react';
+import {Context} from '../App'
+
 function BoardDetail({boardList}){
 
     // 1) 내가 선택한 게시글 정보 얻어오기
     // 2) 게시글 정보 BoardDetail에 넘겨주기
     // 3) 데이터 바인딩
+    const context = useContext(Context);
+    console.log(context);
+
     const {boardNo} = useParams();
     const boardDetail = boardList.find((value) => value.글번호 === Number(boardNo));
+    
+    let [count , setCount] = useState(0);
+
+    useEffect(() => {
+        console.log("mount 이후 실행 " , count); // 컴포넌트가 monut시 실행 or 의존성 배열의 값이 update 될때 실행
+        let time = setTimeout(() => {
+            console.log(count);
+            setCount(count+1);
+        },2000);
+        return () => { // 컴포넌트가 소멸
+            clearTimeout(time);
+        }
+    },[])
+    
     return (
         <>
             <h2>게시판 상세보기</h2>
