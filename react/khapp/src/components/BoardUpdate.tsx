@@ -1,7 +1,9 @@
+import { Props } from '../type/boardType';
 import useInput from '../useInput';
 import { useNavigate } from 'react-router-dom';
 
-function BoardUpdate({boardDetail , setBoardDetail , setBoardList , boardList}){
+function BoardUpdate(props:Props){
+    let {boardDetail , setBoardDetail , setBoardList , boardList} = props;
     // 수정하기 완료후 내가 수정한 게시글 상세보기로 이동.
     // 등록기능도 똑같이 등록 완료후 게시글 상세보기 화면으로 이동.
     const navi = useNavigate();

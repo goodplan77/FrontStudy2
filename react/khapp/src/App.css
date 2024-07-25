@@ -1,24 +1,76 @@
 .App {
   text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
 /* 헤더 */
 .header{
   display: flex;
-  width: 100%;
-  padding: 20px;
-  background-color: #2c5ae9;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #333;
   color: white;
-  justify-content: center;
 }
 
-.nav{
-  width: 100%;
+.header h3 {
+  margin: 0;
+}
+
+.header-2 {
+  display: flex;
+  align-items: center;
+}
+
+.header img {
+  width: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.header span {
+  font-size: 16px; font-weight: bold; vertical-align: middle;
+}
+.header button {
+  margin-left: 10px;
+  padding: 5px 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.user-info {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.user-details {
+  margin-left: 10px;
+}
+
+.user-nickname {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.user-email {
+  font-size: 14px;
+  color: #ccc;
+}
+
+.nav {
   display: flex;
   justify-content: space-around;
+  padding: 10px;
+  background-color: #555;
+  width: 100%;
   color:white;
   border-bottom: 1px solid black;
 }
+
 .nav>button{
   width:100%
 }
@@ -27,6 +79,10 @@
   cursor: pointer;
   background-color: lightgray;
   color: white;
+}
+.nav a {
+  color: white;
+  text-decoration: none;
 }
 
 /* 공용 */
@@ -53,70 +109,163 @@ button{
   border: 0;
   cursor: pointer;
 }
+/* 게시글 목록*/
+.list-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
 
-a{
-  background: white;
-  outline: none;
-  border: 0;
-  cursor: pointer;   
+.list-table th, .list-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+.list-table th {
+  background-color: #f2f2f2;
+}
+
+.list-table tbody tr:hover {
+  background-color: #f5f5f5;
+  cursor: pointer;
+}
+
+.list-table button {
+  background-color: #ff6347;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.list-table button:hover {
+  background-color: #d33122;
+}
+/* 게시글 상세보기 */
+
+.detail-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.detail-table th, .detail-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.detail-table th {
+  background-color: #f2f2f2;
+}
+
+.detail-table td[colSpan="3"] {
+  height: 200px;
+}
+
+.btn-area {
+  margin-top: 20px;
+}
+
+.btn-area a {
+  text-decoration: none;
+  background-color: #4caf50;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-area a:hover {
+  background-color: #45a049;
+}
+/* 등록폼 */
+
+.enroll-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.enroll-table th, .enroll-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.enroll-table input, .enroll-table textarea {
+  width: 100%;
+  padding: 6px;
+  box-sizing: border-box;
+}
+
+.enroll-table button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.enroll-table button:hover {
+  background-color: #45a049;
+}
+
+/* 모달 */
+.modal {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 30%;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
   color: black;
   text-decoration: none;
-}
-
-/* 게시글 목록*/
-.list-table{
-  width: 100%;  
-}
-.list-table tbody>tr:hover *{
   cursor: pointer;
-  background-color: lightgray;
-  color: white;
-}
-.list-table button{
-  width: 100%;  
 }
 
-/* 게시글 상세보기 */
-.detail-table{
-  width: 90%;  
-  margin: 0 auto;
-  margin-bottom: 20px;
-}
-.btn-area{
-  display: flex;
-  justify-content: space-around;  
-  height: 50px;
-  width: 10vw;
-  margin: 0 auto;
-}
-.btn-area>button{
-  background-color: #2c5ae9;
-  color: white;
-  height: 30px;  
+.login-form {
+  text-align: center;
 }
 
-/* 등록폼 */
-.enroll-table{
-  width: 90%;  
-  margin: 0 auto;
-  margin-bottom: 50px;  
+.login-form label {
+  display: block;
+  margin-bottom: 10px;
 }
-.enroll-table td>*,th>* {  
+
+.login-form input {
   width: 100%;
-  height: 99%;
-  padding: 5px;
+  padding: 8px;
+  margin-bottom: 10px;
 }
 
-/* 기존 css*/
-.list{
-  padding-left: 20px ;
-  text-align: left;
-  border-bottom: 1px solid gray;
-}
-
-.modal{
-  margin-top: 20px;
-  padding: 20px;  
-  background: #eee;
-  text-align: left;
+.login-form button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
 }

@@ -9,8 +9,13 @@ import { useState , useEffect , createContext } from 'react'
 import { Route, Routes, Link} from 'react-router-dom';
 import Outer from './components/Outer';
 import axios from 'axios';
+import { Board, Props, SetBoardDetail, SetBoardList } from './type/boardType';
+import { useSelector , useDispatch } from 'react-redux';
+import { RootState } from './store/store';
+import { login , logout , randomProfile } from './features/userSlice';
+import LoginModal from './components/LoginModal';
 
-export let Context = createContext(); // context == state 보관소
+export let Context = createContext({}); // context == state 보관소
 
 
 function App() {
@@ -41,7 +46,7 @@ function App() {
   // [] 빈배열 : 최초 1번만 실행
   // 아예 없음 : 계속해서 실행?
 
-  let [boardList , setBoardList] = useState([]);
+  let [boardList , setBoardList] = useState<Board[]>([]);
   /*
     axios
     .get/post('url경로' , {전달할데이터})
@@ -63,19 +68,42 @@ function App() {
         })
   },[])
 
-  let [boardDetail , setBoardDetail] = useState({});
+  let [boardDetail , setBoardDetail] = useState<Board>(boardList[0]);
 
-  let props = {
+  let props : Props = {
     boardList,
     setBoardList,
     boardDetail,
     setBoardDetail
   }
 
+  let user = useSelector((state:RootState) => state.user);
+  const dispatch  = useDispatch();
+  const [loginModalState , setLoginModalState] = useState(false);
+
+  const loginModal = () => {
+    setLoginModalState(!loginModalState);
+  }
+
   return (
     <div className="App">
       <div className = 'header'>
-        <h3 style={{fontWeight : 'bolder'}}>KH C CLASS</h3>
+        <div className='header-1'>
+          <h3 style={{fontWeight : 'bolder'}}>KH C CLASS</h3>
+        </div>
+        <div className='header-2'>
+          <img src={user.profile} onClick={() => {dispatch(randomProfile())}}></img>
+          <div className='user-info'>
+            <span className='user-nickname'>{user.nickname}</span>
+            <span className='user-eamil'>{user.email}</span>
+          </div>
+          {
+            user.email ?
+            <button onClick={() => {dispatch(logout())}}>로그아웃</button>
+            :
+            <button onClick={() => {loginModal()}}>로그인</button>
+          }
+        </div>
       </div>
       <div className = 'nav'>
         <Link to="/list">일반게시판</Link>
@@ -107,6 +135,7 @@ function App() {
         </Routes>
         </Context.Provider>
       }
+      {loginModalState && <LoginModal setLoginModalState={setLoginModalState}/>}
 
     </div>
   );

@@ -22,4 +22,4 @@ const counterSlice = createSlice({
 })
 export const {increment , decrement , increByAmount} = counterSlice.actions;
 
-export default counterSlice.reducer; // 'counter'
+export default counterSlice.reducer; // interface?

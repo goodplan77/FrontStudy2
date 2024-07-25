@@ -1,7 +1,9 @@
+import { Props } from '../type/boardType';
 import useInput from '../useInput';
 import { useNavigate } from 'react-router-dom';
 
-function BoardInsert({boardList , setBoardList , setBoardDetail}){
+function BoardInsert(props:Props){
+    let {boardList , setBoardList} = props
 
     const navi = useNavigate();
 

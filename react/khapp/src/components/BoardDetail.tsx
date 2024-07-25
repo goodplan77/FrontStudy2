@@ -1,9 +1,12 @@
 import {Link, useParams} from 'react-router-dom';
 import {useState , useEffect , useContext} from 'react';
-import {Context} from '../App'
-
-function BoardDetail({boardList}){
-
+import {Context} from '../App';
+import {Board, Props} from '../type/boardType';
+// type Board = {
+//     ???
+// }
+function BoardDetail(props:Props){
+    const {boardList} = props;
     // 1) 내가 선택한 게시글 정보 얻어오기
     // 2) 게시글 정보 BoardDetail에 넘겨주기
     // 3) 데이터 바인딩
@@ -27,6 +30,7 @@ function BoardDetail({boardList}){
     },[])
     
     return (
+        boardDetail ?
         <>
             <h2>게시판 상세보기</h2>
             <table className="detail-table">
@@ -48,6 +52,7 @@ function BoardDetail({boardList}){
                 <Link to = '/update'>수정</Link>
             </div>
         </>
+        : null
     )
 }
 

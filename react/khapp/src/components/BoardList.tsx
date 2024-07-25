@@ -1,10 +1,11 @@
 import {useState} from 'react'
 import { useNavigate } from 'react-router-dom';
-function BoardList(props){
+import { Props } from '../type/boardType';
+function BoardList(props:Props){
     let {boardList , setBoardList ,setBoardDetail} = props;
     const navi = useNavigate();
 
-    function delelteBoard(no) {
+    function delelteBoard(no:number) {
         setBoardList(boardList.filter((value) => value.글번호 !== no))
     }
    
